@@ -40,6 +40,39 @@ const getWorkers = async(req, res = response) => {
 
 };
 
+/** ======================================================================
+ *  GET WORKER ID
+=========================================================================*/
+const getWorkerId = async(req, res = response) => {
+
+    try {
+
+        const wid = req.params.id;
+
+        const worker = await Worker.findById(wid);
+
+        if (!worker) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No existe ningun trabajador con este ID'
+            });
+        }
+
+        res.json({
+            ok: true,
+            worker
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error inesperado, porfavor intente nuevamente'
+        });
+    }
+
+};
+
 
 /** ======================================================================
  *  POST WORKER
@@ -136,5 +169,6 @@ const updateWorker = async(req, res = response) => {
 // EXPORTS
 module.exports = {
     getWorkers,
-    updateWorker
+    updateWorker,
+    getWorkerId
 }

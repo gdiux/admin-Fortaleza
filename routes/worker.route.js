@@ -9,7 +9,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { updateWorker, getWorkers } = require('../controllers/worker.controller');
+const { updateWorker, getWorkers, getWorkerId } = require('../controllers/worker.controller');
 
 const router = Router();
 
@@ -19,6 +19,14 @@ const router = Router();
 router.get('/', validarJWT, getWorkers);
 /** =====================================================================
  *  GET WORKERS
+=========================================================================*/
+
+/** =====================================================================
+ *  GET WORKER ID
+=========================================================================*/
+router.get('/:id', validarJWT, getWorkerId);
+/** =====================================================================
+ *  GET WORKER ID
 =========================================================================*/
 
 /** =====================================================================
