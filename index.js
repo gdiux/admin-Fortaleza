@@ -24,7 +24,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 5000
 // DataBase
 dbConection();
 
-// DIRECTORIO PUBLICO
+// DIRECTORIO PUBLICO  
 app.use(express.static('public'));
 
 // RUTAS
