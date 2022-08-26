@@ -10,7 +10,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { fileUpload, getImages, deleteImg } = require('../controllers/uploads.controller');
+const { fileUpload, getImages } = require('../controllers/uploads.controller');
 
 const router = Router();
 
@@ -34,7 +34,7 @@ router.get('/:tipo/:image', getImages);
 /** =====================================================================
  *  DELETE IMAGES
 =========================================================================*/
-router.delete('/delete/:type/:id/:desc/:img', validarJWT, deleteImg);
+// router.delete('/delete/:type/:id/:desc/:img', validarJWT, deleteImg);
 /** =====================================================================
  *  DELETE IMAGES
 =========================================================================*/

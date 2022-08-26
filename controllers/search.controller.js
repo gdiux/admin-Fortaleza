@@ -2,8 +2,6 @@ const { response } = require('express');
 
 const User = require('../models/users.model');
 const Client = require('../models/clients.model');
-const Product = require('../models/products.model');
-const Preventive = require('../models/preventives.model');
 const Worker = require('../models/worker.model');
 
 /** =====================================================================
@@ -66,23 +64,7 @@ const search = async(req, res = response) => {
                 Client.countDocuments()
             ]);
             break;
-        case 'products':
 
-            // data = await Client.find({ name: regex });
-            [data, total] = await Promise.all([
-                Product.find({
-                    $or: [
-                        { code: regex },
-                        { serial: regex },
-                        { brand: regex },
-                        { model: regex },
-                        { estado: regex }
-                    ]
-                })
-                .populate('client', 'name phone cid'),
-                Product.countDocuments()
-            ]);
-            break;
 
         case 'workers':
 
@@ -104,41 +86,7 @@ const search = async(req, res = response) => {
             ]);
             break;
 
-        case 'preventives':
 
-            // COMPROBAR SI ES NUMERO
-            if (number) {
-
-                [data, total] = await Promise.all([
-                    Preventive.find({
-                        $or: [
-                            { control: busqueda }
-                        ]
-                    })
-                    .populate('client', 'name cedula phone email address city')
-                    .populate('create', 'name')
-                    .populate('staff', 'name')
-                    .populate('product', 'code serial brand model year status estado next img'),
-                    Preventive.countDocuments()
-                ]);
-
-            } else {
-                [data, total] = await Promise.all([
-                    Preventive.find({
-                        $or: [
-                            { estado: regex }
-                        ]
-                    })
-                    .populate('client', 'name cedula phone email address city')
-                    .populate('create', 'name')
-                    .populate('staff', 'name')
-                    .populate('product', 'code serial brand model year status estado next img'),
-                    Preventive.countDocuments()
-                ]);
-            }
-
-
-            break;
 
         default:
             res.status(400).json({
