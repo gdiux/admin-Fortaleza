@@ -10,7 +10,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { fileUpload, getImages } = require('../controllers/uploads.controller');
+const { fileUpload, getImages, uploadFiles, deleteFile } = require('../controllers/uploads.controller');
 
 const router = Router();
 
@@ -25,18 +25,27 @@ router.put('/:tipo/:id', validarJWT, fileUpload);
 =========================================================================*/
 
 /** =====================================================================
+ *  UPLOADS FILES
+=========================================================================*/
+router.put('/files/:type/:desc/:wid', validarJWT, uploadFiles);
+/** =====================================================================
+ *  UPLOADS FILES
+=========================================================================*/
+
+/** =====================================================================
  *  GET IMAGES
 =========================================================================*/
 router.get('/:tipo/:image', getImages);
 /** =====================================================================
  *  GET IMAGES
 =========================================================================*/
+
 /** =====================================================================
- *  DELETE IMAGES
+ *  DELETE FILES
 =========================================================================*/
-// router.delete('/delete/:type/:id/:desc/:img', validarJWT, deleteImg);
+router.delete('/delete/:attachment/:wid', validarJWT, deleteFile);
 /** =====================================================================
- *  DELETE IMAGES
+ *  DELETE FILES
 =========================================================================*/
 
 // EXPORT
