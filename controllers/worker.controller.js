@@ -75,6 +75,35 @@ const getWorkerId = async(req, res = response) => {
 
 
 /** ======================================================================
+ *  EXPORT EXCEL WORKER
+=========================================================================*/
+const excelWorker = async(req, res = response) => {
+
+    try {
+
+        const [workers, total] = await Promise.all([
+            Worker.find({ status: true }, 'name cedula phone email address city type'),
+            Worker.countDocuments()
+        ]);
+
+        res.json({
+            ok: true,
+            workers,
+            total
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error inesperado, porfavor intente nuevamente'
+        });
+    }
+
+};
+
+
+/** ======================================================================
  *  POST WORKER
 =========================================================================*/
 const createWorker = async(req, res = response) => {
@@ -170,5 +199,6 @@ const updateWorker = async(req, res = response) => {
 module.exports = {
     getWorkers,
     updateWorker,
-    getWorkerId
+    getWorkerId,
+    excelWorker
 }
