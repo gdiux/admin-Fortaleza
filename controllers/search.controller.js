@@ -3,6 +3,8 @@ const { response } = require('express');
 const User = require('../models/users.model');
 const Client = require('../models/clients.model');
 const Worker = require('../models/worker.model');
+const Bussiness = require('../models/bussiness.model');
+const Job = require('../models/jobs.model');
 
 /** =====================================================================
  *  SEARCH FOR TABLE
@@ -79,11 +81,71 @@ const search = async(req, res = response) => {
                         { address: regex },
                         { city: regex },
                         { department: regex },
-                        { type: regex }
+                        { type: regex },
+                        { description: regex },
                     ]
                 }),
                 Worker.countDocuments()
             ]);
+            break;
+
+        case 'bussiness':
+
+            // data = await Client.find({ name: regex });
+            [data, total] = await Promise.all([
+                Bussiness.find({
+                    $or: [
+                        { name: regex },
+                        { nit: regex },
+                        { phone: regex },
+                        { email: regex },
+                        { address: regex },
+                        { city: regex },
+                        { department: regex },
+                        { type: regex }
+                    ]
+                }),
+                Bussiness.countDocuments()
+            ]);
+            break;
+
+        case 'jobs':
+
+            // COMPROBAR SI ES NUMERO
+            if (number) {
+
+                [data, total] = await Promise.all([
+                    Job.find({
+                        $or: [
+                            { control: busqueda }
+                        ]
+                    })
+                    .populate('bussiness', 'name nit email phone address bid')
+                    .populate('worker', 'name cedula email phone address wid'),
+                    Job.countDocuments()
+                ]);
+
+            } else {
+                [data, total] = await Promise.all([
+                    Job.find({
+                        $or: [
+                            { name: regex },
+                            { cedula: regex },
+                            { phone: regex },
+                            { email: regex },
+                            { address: regex },
+                            { city: regex },
+                            { department: regex },
+                            { type: regex }
+                        ]
+                    })
+                    .populate('bussiness', 'name nit email phone address bid')
+                    .populate('worker', 'name cedula email phone address wid'),
+                    Job.countDocuments()
+                ]);
+            }
+
+
             break;
 
 

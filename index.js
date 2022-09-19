@@ -29,6 +29,8 @@ app.use(express.static('public'));
 
 // RUTAS
 app.use('/api/clients', require('./routes/clients.route'));
+app.use('/api/bussiness', require('./routes/bussiness.route'));
+app.use('/api/jobs', require('./routes/jobs.route'));
 
 app.use('/api/login', require('./routes/auth.route'));
 
