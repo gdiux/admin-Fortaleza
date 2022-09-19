@@ -3,6 +3,77 @@ const { response } = require('express');
 const Job = require('../models/jobs.model');
 
 /** ======================================================================
+ *  GET JOBS
+=========================================================================*/
+const getJobsStatus = async(req, res = response) => {
+
+    try {
+
+        const type = req.query.type || 'Pendiente';
+        const desde = Number(req.query.desde) || 0;
+        const limit = Number(req.query.limite) || 10;
+
+        let jobs;
+
+        switch (type) {
+
+            case 'Pendiente':
+
+                jobs = await Job.find({ type })
+                    .populate('bussiness', 'name nit email phone address bid')
+                    .populate('worker', 'name cedula email phone address wid');
+
+                res.json({
+                    ok: true,
+                    jobs
+                });
+
+                break;
+
+            case 'Aprobado':
+
+                jobs = await Job.find({ type })
+                    .populate('bussiness', 'name nit email phone address bid')
+                    .populate('worker', 'name cedula email phone address wid');
+
+                res.json({
+                    ok: true,
+                    jobs
+                });
+
+                break;
+
+            case 'none':
+
+                jobs = await Job.find()
+                    .populate('bussiness', 'name nit email phone address bid')
+                    .populate('worker', 'name cedula email phone address wid')
+                    .skip(desde)
+                    .limit(limit);
+
+                res.json({
+                    ok: true,
+                    jobs
+                });
+
+                break;
+
+            default:
+                break;
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error inesperado, porfavor intente nuevamente'
+        });
+    }
+
+};
+
+/** ======================================================================
  *  GET JOBS OF BUSSINESS
 =========================================================================*/
 const getJobBussiness = async(req, res = response) => {
@@ -171,6 +242,7 @@ const deleteJob = async(req, res = response) => {
 
 // EXPORTS
 module.exports = {
+    getJobsStatus,
     getJobBussiness,
     createJob,
     updateJob,
