@@ -9,7 +9,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { createJob, updateJob, getJobBussiness, deleteJob, getJobsStatus } = require('../controllers/jobs.controller');
+const { createJob, updateJob, getJobBussiness, deleteJob, getJobsStatus, getJobWorker } = require('../controllers/jobs.controller');
 
 const router = Router();
 
@@ -35,6 +35,18 @@ router.get('/all/:bussiness', [
 );
 /** =====================================================================
  *  GET JOBS OF BUSSINESS
+=========================================================================*/
+
+/** =====================================================================
+ *  GET JOBS OF BUSSINESS
+=========================================================================*/
+router.get('/worker/:worker', [
+        validarJWT,
+    ],
+    getJobWorker
+);
+/** =====================================================================
+*  GET JOBS OF BUSSINESS
 =========================================================================*/
 
 /** =====================================================================

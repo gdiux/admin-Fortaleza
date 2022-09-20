@@ -20,8 +20,8 @@ const getJobsStatus = async(req, res = response) => {
             case 'Pendiente':
 
                 jobs = await Job.find({ type })
-                    .populate('bussiness', 'name nit email phone address bid')
-                    .populate('worker', 'name cedula email phone address wid');
+                    .populate('bussiness', 'name nit email phone address bid img')
+                    .populate('worker', 'name cedula email phone address wid img');
 
                 res.json({
                     ok: true,
@@ -33,8 +33,8 @@ const getJobsStatus = async(req, res = response) => {
             case 'Aprobado':
 
                 jobs = await Job.find({ type })
-                    .populate('bussiness', 'name nit email phone address bid')
-                    .populate('worker', 'name cedula email phone address wid');
+                    .populate('bussiness', 'name nit email phone address bid img')
+                    .populate('worker', 'name cedula email phone address wid img');
 
                 res.json({
                     ok: true,
@@ -46,8 +46,8 @@ const getJobsStatus = async(req, res = response) => {
             case 'none':
 
                 jobs = await Job.find()
-                    .populate('bussiness', 'name nit email phone address bid')
-                    .populate('worker', 'name cedula email phone address wid')
+                    .populate('bussiness', 'name nit email phone address bid img')
+                    .populate('worker', 'name cedula email phone address wid img')
                     .skip(desde)
                     .limit(limit);
 
@@ -83,8 +83,8 @@ const getJobBussiness = async(req, res = response) => {
         const bussiness = req.params.bussiness;
 
         const jobs = await Job.find({ bussiness })
-            .populate('bussiness', 'name nit email phone address bid')
-            .populate('worker', 'name cedula email phone address wid');
+            .populate('bussiness', 'name nit email phone address bid img')
+            .populate('worker', 'name cedula email phone address wid img');
 
         res.json({
             ok: true,
@@ -112,8 +112,8 @@ const getJobWorker = async(req, res = response) => {
         const worker = req.params.worker;
 
         const jobs = await Job.find({ worker })
-            .populate('bussiness', 'name nit email phone address bid')
-            .populate('worker', 'name cedula email phone address wid');
+            .populate('bussiness', 'name nit email phone address bid img')
+            .populate('worker', 'name cedula email phone address wid img');
 
         res.json({
             ok: true,
