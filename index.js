@@ -28,17 +28,15 @@ dbConection();
 app.use(express.static('public'));
 
 // RUTAS
-app.use('/api/clients', require('./routes/clients.route'));
 app.use('/api/bussiness', require('./routes/bussiness.route'));
+app.use('/api/clients', require('./routes/clients.route'));
+app.use('/api/entrevistas', require('./routes/entrevista.route'));
 app.use('/api/jobs', require('./routes/jobs.route'));
-
 app.use('/api/login', require('./routes/auth.route'));
-
 app.use('/api/search', require('./routes/search.route'));
-
 app.use('/api/users', require('./routes/users.route'));
-app.use('/api/workers', require('./routes/worker.route'));
 app.use('/api/uploads', require('./routes/uploads.route'));
+app.use('/api/workers', require('./routes/worker.route'));
 
 // SPA
 app.get('*', (req, res) => {

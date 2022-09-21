@@ -1,0 +1,10 @@
+{
+    "service": "gmail",
+    "auth": {
+        "type": "OAuth2",
+        "user": "nomina.fortaleza@gmail.com",
+        "clientId": "912250747535-d8v2a76c34212tull76cml4q82clpmo1.apps.googleusercontent.com",
+        "clientSecret": "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",
+        "refreshToken": "1//04ES8aNV1TfiHCgYIARAAGAQSNwF-L9IrU3pf8XS94uMzCN8pBf4wBPP7Gz1clR8JxxdpozPQsqKyOc1Bq-fbQCRWnDooF7fhcQ4"
+    }
+}
