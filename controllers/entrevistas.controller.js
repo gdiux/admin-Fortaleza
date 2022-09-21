@@ -123,15 +123,15 @@ const createEntrevista = async(req, res = response) => {
                     </div>
                     <div style="box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex">
                         <div style="box-sizing:border-box;width:100%;min-height:1px;padding-right:15px;padding-left:15px;text-align:center">
-                            <h3 style="text-transform: capitalize; box-sizing:border-box;margin-top:0;margin-bottom:.5rem;font-family:inherit;font-weight:500;line-height:1.2;color:inherit;font-size:2rem;margin:20px 0">Hola ${trabajador}</h3>
-                            <h5 style="box-sizing:border-box;margin-top:0;margin-bottom:.5rem;font-family:inherit;font-weight:500;line-height:1.2;color:inherit;font-size:1.25rem;margin:20px 0">Se te a asignado una entrevista para la siguiente fecha.</h5>
+                            <h3 style="text-transform: capitalize; box-sizing:border-box;margin-top:0;margin-bottom:.5rem;font-family:inherit;font-weight:500;line-height:1.2;color:inherit;font-size:2rem;margin:20px 0">Hola, ${trabajador}</h3>
+                            <h5 style="box-sizing:border-box;margin-top:0;margin-bottom:.5rem;font-family:inherit;font-weight:500;line-height:1.2;color:inherit;font-size:1.25rem;margin:20px 0">Se te ha asignado una entrevista para la siguiente fecha:</h5>
                             <div style="box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex">
                                 <div style="box-sizing:border-box;width:100%;min-height:1px;padding-right:15px;padding-left:15px;text-align:center">
                                 </div>
                             </div>
-                            <p style="box-sizing:border-box;margin-top:0;margin-bottom:1rem">Fecha de la entrevista: ${day}</p>
+                            <p style="box-sizing:border-box;margin-top:0;margin-bottom:1rem">Fecha de la entrevista: ${day}.</p>
                             
-                            <p style="box-sizing:border-box;margin-top:0;margin-bottom:1rem">Con este link tambien puedes acceder a la entrevista</p>
+                            <p style="box-sizing:border-box;margin-top:0;margin-bottom:1rem">Con el siguiente link tambien puedes acceder a la entrevista:</p>
                             <p>${entrevista.enlace}</p>
                         </div>
                     </div>
