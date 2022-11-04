@@ -239,6 +239,47 @@ const deleteJob = async(req, res = response) => {
 
 };
 
+/** ======================================================================
+ *  DELETE WORKER OF JOB job
+worker
+=========================================================================*/
+const delteWorkerJob = async(req, res = response) => {
+
+    try {
+        const jid = req.params.job;
+        const worker = req.params.worker;
+
+        const workerDel = await Job.updateOne({ _id: jid }, { $unset: { worker: worker } });
+
+        // VERIFICAR SI SE ACTUALIZO..
+        if (workerDel.nModified === 0) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No se pudo eliminar el archivo, porfavor intente de nuevo'
+            });
+        }
+
+        const jobs = await Job.find({ worker })
+            .populate('bussiness', 'name nit email phone address bid img')
+            .populate('worker', 'name cedula email phone address wid img');
+
+        res.json({
+            ok: true,
+            jobs,
+            total: jobs.length
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error inesperado, porfavor intente nuevamente'
+        });
+    }
+
+};
+
 
 // EXPORTS
 module.exports = {
@@ -247,5 +288,6 @@ module.exports = {
     createJob,
     updateJob,
     deleteJob,
-    getJobWorker
+    getJobWorker,
+    delteWorkerJob
 }
