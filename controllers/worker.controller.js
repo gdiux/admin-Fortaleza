@@ -82,7 +82,7 @@ const excelWorker = async(req, res = response) => {
     try {
 
         const [workers, total] = await Promise.all([
-            Worker.find({ status: true }, 'name cedula phone email address city type'),
+            Worker.find({ status: true }, 'name cedula phone email address city type barrio'),
             Worker.countDocuments()
         ]);
 
