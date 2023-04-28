@@ -7,6 +7,22 @@ const Attachments = Schema({
     type: {
         type: String
     },
+
+    tipo: {
+        type: String
+    },
+
+    parentesco: {
+        type: String
+    },
+
+    numero: {
+        type: String
+    },
+
+    beneficiario: {
+        type: String
+    },
     desc: {
         type: String
     },
