@@ -167,7 +167,7 @@ const updateWorker = async(req, res = response) => {
         // SEARCH USER
 
         // VALIDATE USER
-        const { password, ...campos } = req.body;
+        const { password, email, ...campos } = req.body;
 
         if (password) {
             // ENCRYPTAR PASSWORD
@@ -176,7 +176,7 @@ const updateWorker = async(req, res = response) => {
         }
 
         if (campos.email) {
-            campos.email === campos.email.toLowerCase();
+            campos.email = campos.email.toLowerCase();
         }
 
         // UPDATE
