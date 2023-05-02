@@ -169,11 +169,14 @@ const updateWorker = async(req, res = response) => {
         // VALIDATE USER
         const { password, ...campos } = req.body;
 
-
         if (password) {
             // ENCRYPTAR PASSWORD
             const salt = bcrypt.genSaltSync();
             campos.password = bcrypt.hashSync(password, salt);
+        }
+
+        if (campos.email) {
+            campos.email === campos.email.toLowerCase();
         }
 
         // UPDATE
