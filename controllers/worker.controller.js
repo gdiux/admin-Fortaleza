@@ -175,8 +175,8 @@ const updateWorker = async(req, res = response) => {
             campos.password = bcrypt.hashSync(password, salt);
         }
 
-        if (campos.email) {
-            campos.email = campos.email.toLowerCase();
+        if (email) {
+            campos.email = email.toLowerCase();
         }
 
         // UPDATE
