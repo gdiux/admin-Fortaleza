@@ -156,7 +156,7 @@ const updateWorker = async(req, res = response) => {
 
         const wid = req.params.id;
 
-        // SEARCH USER
+        // SEARCH USERS
         const workerDB = await Worker.findById(wid);
         if (!workerDB) {
             return res.status(404).json({
