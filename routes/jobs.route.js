@@ -52,7 +52,7 @@ router.get('/worker/:worker', [
 /** =====================================================================
  *  POST JOB
 =========================================================================*/
-router.post('/', [
+router.post('/:bid', [
         validarJWT,
         check('name', 'El nombre es obligatorio').not().isEmpty(),
         check('description', 'La descripción es obligatoria').not().isEmpty(),

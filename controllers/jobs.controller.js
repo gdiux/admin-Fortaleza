@@ -138,7 +138,7 @@ const createJob = async(req, res = response) => {
 
     try {
 
-        const bussiness = req.bid;
+        const bussiness = req.params.bid;
 
         const job = new Job(req.body);
 
